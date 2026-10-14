@@ -1,0 +1,29 @@
+# reference https://forum.xfce.org/viewtopic.php?pid=43171#p43171
+
+# important: to list property:
+xfconf-query --channel 'xfce4-panel' --property '/panels' --list --verbose
+
+
+# delete panel 2
+xfconf-query --channel 'xfce4-panel' --property '/panels/panel-2' --reset --recursive
+xfconf-query --channel 'xfce4-panel' --property '/panels' --force-array --type int --set 1
+xfce4-panel -r
+# clean up remnant of panel 2
+# delete launcher from panel 2
+rm -rf /.config/xfce4/panel/launcher*
+# list plugin properties: xfconf-query -c xfce4-panel -p /plugins -lv
+# delete with command:
+xfconf-query -c xfce4-panel -p /plugins/plugin-11 -rR
+xfconf-query -c xfce4-panel -p /plugins/plugin-12 -rR
+xfconf-query -c xfce4-panel -p /plugins/plugin-13 -rR
+xfconf-query -c xfce4-panel -p /plugins/plugin-14 -rR
+xfconf-query -c xfce4-panel -p /plugins/plugin-15 -rR
+xfconf-query -c xfce4-panel -p /plugins/plugin-16 -rR
+xfconf-query -c xfce4-panel -p /plugins/plugin-17 -rR
+xfconf-query -c xfce4-panel -p /plugins/plugin-18 -rR
+
+
+
+
+# move panel 1 to bottom
+xfconf-query --channel 'xfce4-panel' --property '/panels/panel-1/position' --type string --set "p=8;x=960;y=1066"
